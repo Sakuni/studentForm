@@ -5,10 +5,13 @@
     <title>Angularjs Example</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bower_components/ng-img-crop/compile/unminified/ng-img-crop.css"/>
 </head>
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="VisitorFormController.js"></script>
+<script type="text/javascript" src="bower_components/ng-img-crop/compile/unminified/ng-img-crop.js"></script>
+
 <!--Referred: http://rabidgadfly.com/2013/01/form-validation-with-angularjs-and-html5/-->
 <div class="outerwrapper" ng-controller="VisitorFormController">
 
@@ -69,7 +72,8 @@
             <!--Comments: <textarea name="comments" id="comments" cols="25" rows="3"></textarea>-->
 
             <span class="label-c ">Colour:</span><br><br>
-            <input type="radio" class="container input" name="fc" value="Red" ng-model="visitorInfo.colour" required>Red</input>
+            <input type="radio" class="container input" name="fc" value="Red" ng-model="visitorInfo.colour"
+                   required>Red</input>
             <input type="radio" name="fc" value="Green" ng-model="visitorInfo.colour" required>Green</input>
             <input type="radio" name="fc" value="Yellow" ng-model="visitorInfo.colour" required>Yellow</input>
             <input type="radio" name="fc" value="Blue" ng-model="visitorInfo.colour" required>Blue</input>
@@ -99,6 +103,7 @@
             </div>
 
         </form>
+
 
     </div>
 
@@ -131,7 +136,15 @@
             Form.$valid = {{valForm.$valid}}
         </p>
     </div>
+    <div class="container"></div><br>
 
+    <!--image-crop example: custom directive-->
+    <div>Select an image file: <input type="file" id="fileInput"/></div>
+    <div class="cropArea">
+        <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+    </div>
+    <div>Cropped Image:</div>
+    <div><img ng-src="{{myCroppedImage}}"/></div>
 
 </div>
 

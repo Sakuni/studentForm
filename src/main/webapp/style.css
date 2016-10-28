@@ -2,6 +2,7 @@
 body {
     font-family: Helvetica, Arial;
     font-size: 10pt;
+    margin-left: 40px;
 }
 
 input {
@@ -107,4 +108,12 @@ input.ng-invalid.ng-dirty {
 
 .bold {
     font-weight:bold;
+}
+
+/*ng-img-crop style*/
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:500px;
+    height:350px;
 }

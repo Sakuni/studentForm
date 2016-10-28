@@ -2,7 +2,7 @@
  * Created by Sakuni.Manamendra on 10/25/2016.
  */
 
-angular.module('testApp', []).
+angular.module('testApp', ['ngImgCrop']).
     controller('VisitorFormController', function ($scope, $http) {
 
         $scope.sampledata = [
@@ -98,6 +98,21 @@ angular.module('testApp', []).
         // Set form to last submitted data
         $scope.reset();
 
+        // custom directive img-crop
+        $scope.myImage = '';
+        $scope.myCroppedImage = '';
+
+        var handleFileSelect = function (evt) {
+            var file = evt.currentTarget.files[0];
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                $scope.$apply(function ($scope) {
+                    $scope.myImage = evt.target.result;
+                });
+            };
+            reader.readAsDataURL(file);
+        };
+        angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
     }
 );
