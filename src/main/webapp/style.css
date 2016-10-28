@@ -1,0 +1,110 @@
+@charset "UTF-8";
+body {
+    font-family: Helvetica, Arial;
+    font-size: 10pt;
+}
+
+input {
+    width:130px;
+}
+
+input.ng-invalid.ng-dirty {
+    background-color:red;
+}
+
+/*
+Unfortunately there is no consistent implementation
+for placeholder, which is the reason for this ugliness
+*/
+input.ng-invalid.ng-dirty::-webkit-input-placeholder,
+input.ng-invalid.ng-dirty::-moz-placeholder,
+input.ng-invalid.ng-dirty::-ms-input-placeholder,
+input.ng-invalid.ng-dirty {
+    color:#fff;
+}
+
+.container {
+    width: 100px;
+    /*clear: both;*/
+}
+.container input {
+    width: 50%;
+    clear: both;
+}
+
+
+.outerwrapper {
+    width:950px;
+}
+
+.formwrapper {
+    border:1px solid #666;
+    border-radius:8px;
+    box-shadow: 5px 5px 5px #888888;
+    float:left;
+    margin-right:50px;
+    margin-left: 50px;
+    padding:30px;
+    width:350px;
+    background: #F7F2E0;
+}
+
+.debugoutput {
+    border:1px solid #666;
+    border-radius:8px;
+    float:left;
+    padding:20px;
+    width:500px;
+    overflow:auto;
+    background:#ccc;
+    word-wrap:break-word;
+}
+
+.debugoutput h3 {
+    color:maroon;
+    font-size:.9em;
+    margin:0;
+}
+
+.debugoutput p {
+    font-size:.8em;
+}
+
+.debugbox {
+    width:96%;
+    margin:3px auto;
+    border:1px solid #666;
+    border-radius:4px;
+    padding:2px;
+    background:#f5f5f5;
+}
+
+.debugbox h4 {
+    color:maroon;
+    font-size:.8em;
+    margin:0;
+}
+
+.label-c {
+    float:left;
+    font-size:.9em;
+    font-weight:bold;
+    text-align:left;
+    width:75px;
+    margin-right:10px;
+    line-height:20px;
+}
+
+.buttons {
+    text-align: center;
+    margin-top:15px;
+}
+
+.submitbtn:enabled {
+    background-color:green;
+    color:white;
+}
+
+.bold {
+    font-weight:bold;
+}

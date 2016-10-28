@@ -1,0 +1,28 @@
+-- Table: angularjs.autodb
+
+-- DROP TABLE angularjs.autodb;
+
+CREATE TABLE angularjs.autodb
+(
+    firstname character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    lastname character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    address character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    city character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    state character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    zip integer NOT NULL,
+    fav character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    auto_inc integer NOT NULL DEFAULT nextval('angularjs.autodb_auto_inc_seq'::regclass),
+    phone character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    email character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    date date NOT NULL,
+    country character varying(255) COLLATE "default".pg_catalog NOT NULL,
+    colour character varying(10) COLLATE "default".pg_catalog NOT NULL,
+    CONSTRAINT autodb_pkey PRIMARY KEY (auto_inc)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE angularjs.autodb
+    OWNER to postgres;

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="testApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Angularjs Example</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="VisitorFormController.js"></script>
+<!--Referred: http://rabidgadfly.com/2013/01/form-validation-with-angularjs-and-html5/-->
+<div class="outerwrapper" ng-controller="VisitorFormController">
+
+    <p>TIP: The sample button will fill the form for you.</p>
+
+    <div class="formwrapper container">
+
+        <!--  	Form uses VisitorFormController to manage scope.
+                novalidate prevents certain browsers from placing a red border around
+                unfilled form fields. -->
+
+        <form name="valForm" class="form-horizontal" novalidate>
+
+            <!--  Each input field has been marked as required. The form will not be
+                considered valid until all input fields have been populated. -->
+
+            <span class="label-c">First Name:</span>
+            <input name="firstName" ng-model="visitorInfo.firstName" placeholder="First Name" required/>
+            <span class="valid" ng-show="valForm.firstName.$valid">&#10004;</span>
+
+            <span class="label-c">Last Name:</span>
+            <input name="lastName" ng-model="visitorInfo.lastName" placeholder="Last Name" required>
+            <span class="valid" ng-show="valForm.lastName.$valid">&#10004;</span>
+
+            <span class="label-c">Favorite:</span>
+            <input name="fav" ng-model="visitorInfo.fav" placeholder="Favorite word" required/>
+            <span class="valid" ng-show="valForm.fav.$valid">&#10004;</span>
+
+            <span class="label-c">Address:</span>
+            <input name="address" ng-model="visitorInfo.address" placeholder="Address" required>
+            <span class="valid" ng-show="valForm.address.$valid">&#10004;</span>
+
+            <span class="label-c">City:</span>
+            <input name="city" ng-model="visitorInfo.city" placeholder="City" required>
+            <span class="valid" ng-show="valForm.city.$valid">&#10004;</span>
+
+            <span class="label-c">State:</span>
+            <input name="state" ng-model="visitorInfo.state" placeholder="State" required>
+            <span class="valid" ng-show="valForm.state.$valid">&#10004;</span>
+
+            <span class="label-c">Zip:</span>
+            <input name="zip" type="number" ng-model="visitorInfo.zip" placeholder="Zip" required>
+            <span class="valid" ng-show="valForm.zip.$valid">&#10004;</span>
+
+            <span class="label-c">Phone:</span>
+            <input name="phone" type="tel" ng-model="visitorInfo.phone" placeholder="Phone" required>
+            <span class="valid" ng-show="valForm.phone.$valid">&#10004;</span>
+
+            <span class="label-c">Email:</span>
+            <input name="email" type="email" ng-model="visitorInfo.email" placeholder="Email" required>
+            <span class="valid" ng-show="valForm.email.$valid">&#10004;</span>
+
+            <span class="label-c">Date:</span>
+            <input name="date" type="date" ng-model="visitorInfo.date" placeholder="date" required/>
+            <span class="valid" ng-show="valForm.date.$valid">&#10004;</span><br>
+            <!--Directives practise-->
+
+            <!--Comments: <textarea name="comments" id="comments" cols="25" rows="3"></textarea>-->
+
+            <span class="label-c ">Colour:</span><br><br>
+            <input type="radio" class="container input" name="fc" value="Red" ng-model="visitorInfo.colour" required>Red</input>
+            <input type="radio" name="fc" value="Green" ng-model="visitorInfo.colour" required>Green</input>
+            <input type="radio" name="fc" value="Yellow" ng-model="visitorInfo.colour" required>Yellow</input>
+            <input type="radio" name="fc" value="Blue" ng-model="visitorInfo.colour" required>Blue</input>
+            <span class="valid" ng-show="valForm.fc.$valid">&#10004;</span><br><br>
+
+            <span class="label-c">Country:</span>
+            <select name="country" ng-model="visitorInfo.country" required>
+                <option value="">-Select Country-</option>
+                <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+            </select>
+            <span class="valid" ng-show="valForm.country.$valid">&#10004;</span>
+
+
+            <!--buttons here-->
+            <div class="buttons">
+                <button ng-click="populateSample()" class="btn btn-success">Sample</button>
+
+                <!--  Reset button will be disabled if no change has been made to visitor data -->
+                <button ng-click="reset()" ng-disabled="isUnchanged(visitorInfo)" class="btn btn-success">RESTORE
+                </button>
+
+                <!--  Submit button will be disabled if no change has been made to visitor data
+                        OR if the entered data does not pass validation -->
+                <button ng-click="update(visitorInfo)" class="btn btn-success"
+                        ng-disabled="valForm.$invalid || isUnchanged(visitorInfo)">SUBMIT
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <!--  Debugging -->
+    <div class="debugoutput">
+        <h3>Debug Output</h3>
+
+        <div class="debugbox">
+            <h4>Stored Object:</h4>
+            {{PostDataResponse}}
+        </div>
+        <div class="debugbox">
+            <h4>Pending Object (visitorInfo):</h4>
+            {{visitorInfo}}
+        </div>
+        <p>
+            date.$error = {{valForm.date.$error}}<br>
+            firstName.$error = {{valForm.firstName.$error}}<br>
+            lastName.$error = {{valForm.lastName.$error}}<br>
+            address.$error = {{valForm.address.$error}}<br>
+            city.$error = {{valForm.city.$error}}<br>
+            state.$error = {{valForm.state.$error}}<br>
+            country..$error = {{valForm.country.$error}}<br>
+            zip.$error = {{valForm.zip.$error}}<br>
+            phone.$error = {{valForm.phone.$error}}<br>
+            email.$error = {{valForm.email.$error}}<br>
+            fav.$error = {{valForm.fav.$error}}<br>
+            fc.$error = {{valForm.fc.$error}}
+            <br>
+            Form.$valid = {{valForm.$valid}}
+        </p>
+    </div>
+
+
+</div>
+
+</body>
+</html>
